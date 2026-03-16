@@ -1,0 +1,17 @@
+<p *ngIf="loading">Ładowanie szczegółów zgłoszenia...</p>
+<p *ngIf="error">{{ error }}</p>
+
+<div *ngIf="ticket" class="ticket-details">
+ <h1>{{ ticket.title }}</h1>
+ <p><strong>Status:</strong> {{ ticket.status }}</p>
+ <p><strong>Opis:</strong> {{ ticket.description }}</p>
+ <p><strong>User ID:</strong> {{ ticket.user_id }}</p>
+
+ <h2>Komentarze</h2>
+ <div *ngIf="ticket.comments.length === 0">Brak komentarzy.</div>
+
+ <div class="comment-card" *ngFor="let comment of ticket.comments">
+  <p>{{ comment.content }}</p>
+  <small>Author ID: {{ comment.author_id }}</small>
+ </div>
+</div>

@@ -1,0 +1,34 @@
+<h1>Nowe zgłoszenie</h1>
+
+<form (ngSubmit)="onSubmit()" #ticketForm="ngForm" class="ticket-form">
+ <label for="title">Tytuł</label>
+ <input
+  id="title"
+  name="title"
+  [(ngModel)]="title"
+  required
+ />
+
+ <label for="description">Opis</label>
+ <textarea
+  id="description"
+  name="description"
+  [(ngModel)]="description"
+  rows="5"
+  required
+ ></textarea>
+
+ <label for="userId">User ID</label>
+ <input
+  id="userId"
+  name="userId"
+  type="number"
+  [(ngModel)]="userId"
+  required
+ />
+
+ <button type="submit" [disabled]="ticketForm.invalid">Dodaj zgłoszenie</button>
+</form>
+
+<p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+<p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>

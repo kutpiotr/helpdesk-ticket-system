@@ -1,0 +1,18 @@
+<h1>Lista zgłoszeń</h1>
+
+<p *ngIf="loading">Ładowanie zgłoszeń...</p>
+<p *ngIf="error">{{ error }}</p>
+
+<div *ngIf="!loading && !error && tickets.length === 0">
+ Brak zgłoszeń.
+</div>
+
+<div class="ticket-list" *ngIf="!loading && tickets.length > 0">
+ <div class="ticket-card" *ngFor="let ticket of tickets">
+  <h3>{{ ticket.title }}</h3>
+  <p>{{ ticket.description }}</p>
+  <p><strong>Status:</strong> {{ ticket.status }}</p>
+  <p><strong>User ID:</strong> {{ ticket.user_id }}</p>
+  <a [routerLink]="['/tickets', ticket.id]">Szczegóły</a>
+ </div>
+</div>
