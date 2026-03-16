@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { TicketService } from '../../services/ticket.service';
 
@@ -13,16 +14,19 @@ import { TicketService } from '../../services/ticket.service';
 })
 export class TicketFormComponent {
  private ticketService = inject(TicketService);
+ private router = inject(Router);
 
  title = '';
  description = '';
  userId = 1;
  successMessage = '';
  errorMessage = '';
+ submitting = false;
 
  onSubmit(): void {
   this.successMessage = '';
   this.errorMessage = '';
+  this.submitting = true;
 
   this.ticketService.createTicket({
    title: this.title,
@@ -33,9 +37,15 @@ export class TicketFormComponent {
     this.successMessage = 'Zgłoszenie zostało utworzone.';
     this.title = '';
     this.description = '';
+    this.submitting = false;
+
+    setTimeout(() => {
+     this.router.navigate(['/tickets']);
+    }, 800);
    },
    error: () => {
     this.errorMessage = 'Nie udało się utworzyć zgłoszenia.';
+    this.submitting = false;
    }
   });
  }

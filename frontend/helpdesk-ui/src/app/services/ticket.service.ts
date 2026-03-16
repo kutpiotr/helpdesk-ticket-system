@@ -13,7 +13,7 @@ export class TicketService {
  private apiUrl = 'http://127.0.0.1:8000/tickets';
 
  getTickets(): Observable<Ticket[]> {
-  return this.http.get<Ticket[]>(this.apiUrl);
+  return this.http.get<Ticket[]>(`${this.apiUrl}/`);
  }
 
  getTicketById(id: number): Observable<TicketDetail> {
@@ -37,5 +37,9 @@ export class TicketService {
    content,
    author_id: authorId
   });
+ }
+
+ deleteTicket(ticketId: number): Observable<{ message: string }> {
+  return this.http.delete<{ message: string }>(`${this.apiUrl}/${ticketId}`);
  }
 }

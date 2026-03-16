@@ -5,9 +5,39 @@
  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.details-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 16px;
+ flex-wrap: wrap;
+ margin-bottom: 16px;
+}
+
+.header-actions {
+ display: flex;
+ gap: 12px;
+ align-items: center;
+}
+
 .comment-card {
  margin-top: 12px;
  padding: 12px;
  background: #f3f4f6;
  border-radius: 6px;
+}
+
+.delete-btn {
+ padding: 10px 14px;
+ border: none;
+ border-radius: 6px;
+ cursor: pointer;
+}
+
+.success {
+ color: green;
+}
+
+.error {
+ color: red;
 }

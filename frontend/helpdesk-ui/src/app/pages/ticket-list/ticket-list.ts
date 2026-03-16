@@ -1,5 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { Ticket } from '../../models/ticket.model';
@@ -20,6 +20,13 @@ export class TicketListComponent implements OnInit {
  error = '';
 
  ngOnInit(): void {
+  this.loadTickets();
+ }
+
+ loadTickets(): void {
+  this.loading = true;
+  this.error = '';
+
   this.ticketService.getTickets().subscribe({
    next: (data) => {
     this.tickets = data;

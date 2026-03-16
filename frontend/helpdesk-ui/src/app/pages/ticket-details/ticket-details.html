@@ -1,11 +1,22 @@
 <p *ngIf="loading">Ładowanie szczegółów zgłoszenia...</p>
-<p *ngIf="error">{{ error }}</p>
+<p *ngIf="error" class="error">{{ error }}</p>
+<p *ngIf="deleteMessage" class="success">{{ deleteMessage }}</p>
 
-<div *ngIf="ticket" class="ticket-details">
- <h1>{{ ticket.title }}</h1>
+<div *ngIf="ticket && !loading" class="ticket-details">
+ <div class="details-header">
+  <h1>{{ ticket.title }}</h1>
+  <div class="header-actions">
+   <a routerLink="/tickets">Powrót do listy</a>
+   <button type="button" class="delete-btn" (click)="deleteTicket()" [disabled]="deleting">
+    {{ deleting ? 'Usuwanie...' : 'Usuń zgłoszenie' }}
+   </button>
+  </div>
+ </div>
+
  <p><strong>Status:</strong> {{ ticket.status }}</p>
  <p><strong>Opis:</strong> {{ ticket.description }}</p>
  <p><strong>User ID:</strong> {{ ticket.user_id }}</p>
+ <p><strong>Data utworzenia:</strong> {{ ticket.created_at }}</p>
 
  <h2>Komentarze</h2>
  <div *ngIf="ticket.comments.length === 0">Brak komentarzy.</div>

@@ -9,3 +9,22 @@
  border-radius: 8px;
  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+.ticket-card-header {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 12px;
+ flex-wrap: wrap;
+}
+
+.status-badge {
+ padding: 4px 10px;
+ border-radius: 999px;
+ background: #e5e7eb;
+ font-size: 14px;
+}
+
+.error {
+ color: red;
+}
