@@ -1,5 +1,10 @@
 from fastapi import FastAPI
+
+from app.db import Base, engine
+from app.models import Comment, Ticket, User
 from app.routes.health import router as health_router
+
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
 title="Helpdesk Ticket System API",
