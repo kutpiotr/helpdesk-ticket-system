@@ -24,12 +24,22 @@ export class TicketDetailsComponent implements OnInit {
  deleteMessage = '';
 
  ngOnInit(): void {
-  this.loadTicket();
+  this.route.paramMap.subscribe({
+   next: (params) => {
+    const id = Number(params.get('id'));
+
+    if (!id) {
+     this.error = 'Nieprawidłowe ID zgłoszenia.';
+     this.loading = false;
+     return;
+    }
+
+    this.loadTicket(id);
+   }
+  });
  }
 
- loadTicket(): void {
-  const id = Number(this.route.snapshot.paramMap.get('id'));
-
+ loadTicket(id: number): void {
   this.loading = true;
   this.error = '';
 
@@ -38,7 +48,8 @@ export class TicketDetailsComponent implements OnInit {
     this.ticket = data;
     this.loading = false;
    },
-   error: () => {
+   error: (err) => {
+    console.error(err);
     this.error = 'Nie udało się pobrać szczegółów zgłoszenia.';
     this.loading = false;
    }

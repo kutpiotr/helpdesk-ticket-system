@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "polyfills": [
+            "zone.js"
+            ],
             "outputMode": "static",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
@@ -75,6 +78,10 @@
           "defaultConfiguration": "development"
         },
         "test": {
+          "polyfills": [
+          "zone.js",
+          "zone.js/testing"
+          ],
           "builder": "@angular/build:unit-test"
         }
       }
