@@ -1,2 +1,55 @@
 <h1>Panel administratora</h1>
-<p>W następnym etapie dodamy tutaj zarządzanie statusami zgłoszeń i komentarzami.</p>
+
+<p *ngIf="loading">Ładowanie zgłoszeń...</p>
+<p *ngIf="message" class="success">{{ message }}</p>
+<p *ngIf="error" class="error">{{ error }}</p>
+
+<div class="admin-layout" *ngIf="!loading">
+ <section class="ticket-section">
+  <h2>Wszystkie zgłoszenia</h2>
+
+  <div class="ticket-card" *ngFor="let ticket of tickets">
+   <h3>{{ ticket.title }}</h3>
+   <p>{{ ticket.description }}</p>
+   <p><strong>Status:</strong> {{ ticket.status }}</p>
+   <p><strong>Ticket ID:</strong> {{ ticket.id }}</p>
+
+   <div class="actions">
+    <button type="button" (click)="selectTicket(ticket.id)">Pokaż komentarze</button>
+
+    <select [(ngModel)]="newStatus">
+     <option value="open">open</option>
+     <option value="in_progress">in_progress</option>
+     <option value="closed">closed</option>
+    </select>
+
+    <button type="button" (click)="updateStatus(ticket.id)">Zmień status</button>
+   </div>
+  </div>
+ </section>
+
+ <section class="comment-section" *ngIf="selectedTicketId !== null">
+  <h2>Komentarze dla zgłoszenia #{{ selectedTicketId }}</h2>
+
+  <p *ngIf="commentsLoading">Ładowanie komentarzy...</p>
+
+  <div *ngIf="!commentsLoading && comments.length === 0">
+   Brak komentarzy.
+  </div>
+
+  <div class="comment-card" *ngFor="let comment of comments">
+   <p>{{ comment.content }}</p>
+   <small>Author ID: {{ comment.author_id }}</small>
+  </div>
+
+  <div class="comment-form">
+   <textarea
+    [(ngModel)]="newComment"
+    rows="4"
+    placeholder="Dodaj komentarz administracyjny"
+   ></textarea>
+
+   <button type="button" (click)="addComment(selectedTicketId)">Dodaj komentarz</button>
+  </div>
+ </section>
+</div>

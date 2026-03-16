@@ -19,3 +19,7 @@ export interface TicketCreate {
 export interface TicketDetail extends Ticket {
  comments: Comment[];
 }
+
+export interface TicketStatusUpdate {
+ status: string;
+}
