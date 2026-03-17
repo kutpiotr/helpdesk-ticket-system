@@ -57,17 +57,9 @@ System umożliwia tworzenie zgłoszeń, ich przeglądanie, aktualizację status�
 
 ## Architektura systemu
 
-![Architecture](docs/architecture.png)
-
 Struktura aplikacji:
 
-User (Browser)
-↓
-Angular (Frontend)
-↓ REST API
-FastAPI (Backend)
-↓
-SQLite (Database)
+User (Browser) → Angular (Frontend) → FastAPI (Backend) → SQLite (Database)
 
 ---
 
@@ -81,19 +73,19 @@ SQLite (Database)
 
 ### Lista zgłoszeń
 
-![Tickets](docs/screenshots/tickets.png)
+![Tickets](docs/tickets.png)
 
 ### Formularz dodawania zgłoszenia
 
-![Form](docs/screenshots/form.png)
+![Form](docs/form.png)
 
 ### Szczegóły zgłoszenia
 
-![Details](docs/screenshots/details.png)
+![Details](docs/details.png)
 
 ### Panel administratora
 
-![Admin](docs/screenshots/admin.png)
+![Admin](docs/admin.png)
 
 ---
 
