@@ -146,26 +146,6 @@ Dzięki użyciu ORM (**SQLAlchemy**) aplikacja może zostać łatwo dostosowana 
 
 ---
 
-## Struktura projektu
-
-```
-helpdesk-ticket-system/
-├── backend/
-├── frontend/
-├── docs/
-│   ├── architecture.png
-│   ├── uml.png
-│   └── screenshots/
-│       ├── tickets.png
-│       ├── form.png
-│       ├── details.png
-│       └── admin.png
-├── README.md
-└── .gitignore
-```
-
----
-
 ## Autor
 
 Piotr Kut student kierunku Inżynieria i analiza danych
