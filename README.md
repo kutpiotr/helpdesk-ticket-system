@@ -1,67 +1,179 @@
-# Helpdesk / Ticket System
+# Helpdesk Ticket System
 
-Projekt portfolio Full Stack pokazujący budowę systemu zarządzania zgłoszeniami.
+Projekt Full Stack przedstawiający system zarządzania zgłoszeniami (Helpdesk), umożliwiający użytkownikom zgłaszanie problemów oraz administratorom zarządzanie zgłoszeniami i komentarzami.
 
-## Zakres projektu
+---
 
-Aplikacja umożliwia:
-- tworzenie zgłoszeń przez użytkowników,
-- przeglądanie zgłoszeń i ich statusów,
-- zarządzanie zgłoszeniami przez administratora,
-- dodawanie komentarzy do zgłoszeń.
+## Opis projektu
+
+Aplikacja składa się z dwóch głównych części:
+
+* **Frontend (Angular)** – interfejs użytkownika do obsługi zgłoszeń
+* **Backend (FastAPI)** – REST API do zarządzania danymi
+* **Baza danych (SQLite)** – przechowywanie danych aplikacji
+
+System umożliwia tworzenie zgłoszeń, ich przeglądanie, aktualizację statusów oraz dodawanie komentarzy.
+
+---
 
 ## Technologie
 
 ### Backend
-- Python
-- FastAPI
-- SQLAlchemy
-- SQLite / PostgreSQL
+
+* Python
+* FastAPI
+* SQLAlchemy
+* SQLite
 
 ### Frontend
-- Angular
-- TypeScript
-- Angular HttpClient
+
+* Angular
+* TypeScript
+* Angular HttpClient
 
 ### Inne
-- REST API
-- SQL
-- GitHub
-- Markdown
 
-## Plan rozwoju
-1. Analiza wymagań i projekt MVP
-2. Inicjalizacja repozytorium
-3. Backend FastAPI
-4. Baza danych i modele
-5. REST API
-6. Frontend Angular
-7. Integracja frontend + backend
-8. Dokumentacja i diagramy
+* REST API
+* Git
+* Markdown
 
-## Struktura projektu
+---
 
-```t
-helpdesk-ticket-system/
-├── backend/   # API w FastAPI
-├── frontend/  # aplikacja Angular
-├── docs/      # diagramy i dokumentacja pomocnicza
-└── README.md
-```
+## Funkcjonalności
+
+### Użytkownik
+
+* tworzenie zgłoszeń
+* przeglądanie listy zgłoszeń
+* podgląd szczegółów zgłoszenia
+
+### Administrator
+
+* przeglądanie wszystkich zgłoszeń
+* zmiana statusu zgłoszenia (`open`, `in_progress`, `closed`)
+* dodawanie komentarzy do zgłoszeń
+
+---
+
+## Architektura systemu
+
+![Architecture](docs/architecture.png)
+
+Struktura aplikacji:
+
+User (Browser)
+↓
+Angular (Frontend)
+↓ REST API
+FastAPI (Backend)
+↓
+SQLite (Database)
+
+---
+
+## Diagram UML
+
+![UML](docs/uml.png)
+
+---
+
+## Screenshoty
+
+### Lista zgłoszeń
+
+![Tickets](docs/screenshots/tickets.png)
+
+### Formularz dodawania zgłoszenia
+
+![Form](docs/screenshots/form.png)
+
+### Szczegóły zgłoszenia
+
+![Details](docs/screenshots/details.png)
+
+### Panel administratora
+
+![Admin](docs/screenshots/admin.png)
+
+---
 
 ## Uruchomienie projektu
 
-### backend
-```
+### 1. Backend (FastAPI)
+
+```bash
 cd backend
-python -m venv .venv
-.venv\Scripts\activate
 pip install -r requirements.txt
+uvicorn app.main:app --reload
 ```
 
-### frontend
-```
+Backend dostępny pod:
+http://127.0.0.1:8000
+
+Dokumentacja API (Swagger):
+http://127.0.0.1:8000/docs
+
+---
+
+### 2. Frontend (Angular)
+
+```bash
 cd frontend/helpdesk-ui
 npm install
 ng serve
 ```
+
+Frontend dostępny pod:
+http://localhost:4200
+
+---
+
+## API (przykładowe endpointy)
+
+```http
+GET     /tickets
+POST    /tickets
+GET     /tickets/{id}
+PATCH   /tickets/{id}/status
+DELETE  /tickets/{id}
+
+GET     /users
+POST    /users
+
+GET     /tickets/{id}/comments
+POST    /tickets/{id}/comments
+```
+
+---
+
+## Baza danych
+
+W projekcie wykorzystano **SQLite** jako bazę danych do celów developmentowych.
+
+Dzięki użyciu ORM (**SQLAlchemy**) aplikacja może zostać łatwo dostosowana do pracy z bazą **PostgreSQL** w środowisku produkcyjnym.
+
+---
+
+## Struktura projektu
+
+```
+helpdesk-ticket-system/
+├── backend/
+├── frontend/
+├── docs/
+│   ├── architecture.png
+│   ├── uml.png
+│   └── screenshots/
+│       ├── tickets.png
+│       ├── form.png
+│       ├── details.png
+│       └── admin.png
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Autor
+
+Piotr Kut student kierunku Inżynieria i analiza danych
